@@ -6,4 +6,5 @@ const userRouter=express.Router();
 userRouter.post("/register",registerUser);
 userRouter.post("/login",LoginUser);
 userRouter.get("/credits",UserMiddleware,userCredits);
+userRouter.patch("/credits", UserMiddleware, userCredits);
 export default userRouter;

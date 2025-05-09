@@ -4,9 +4,38 @@ import { assets } from "../assets/assets";
 import { motion } from "motion/react";
 import { AppContext } from "../context/state";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 export function BuyCredit() {
-  const { user,setcredit,credit,SetShowLogin} = useContext(AppContext);
+  const { user,setcredit,credit,SetShowLogin,backendUrl} = useContext(AppContext);
   const navigate=useNavigate();
+  async function onCreditsHandler(item){
+    if(!user){
+      SetShowLogin(true);
+      return;
+    }
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await axios.patch(
+      backendUrl + "/user/credits",
+      { credits: item.credits },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          token: token,
+        },
+      }
+    );
+      if (data.success) {
+        setcredit(data.creditBalance);
+        navigate("/");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
   return (
     <motion.div
       className="min-h-[80vh] text-center pt-14 mb-10"
@@ -40,15 +69,7 @@ export function BuyCredit() {
               </span>{" "}
               /{item.credits} credits
             </h1>
-            <button className="mt-16 text-white bg-zinc-900 px-10 py-3 rounded cursor-pointer w-full" onClick={()=>{
-              if(user){
-                setcredit(credit+item.credits);
-                navigate('/')
-              }
-              else{
-                SetShowLogin(true);
-              }
-            }}>
+            <button className="mt-16 text-white bg-zinc-900 px-10 py-3 rounded cursor-pointer w-full" onClick={()=>onCreditsHandler(item)}>
               {user ? "Purchase" : "Get started"}
             </button>
           </div>
