@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { assets } from "../assets/assets";
 import { motion } from "framer-motion"; 
-import { delay } from "motion";
+// import { delay } from "motion";
 import { AppContext } from "../context/state";
 import { useNavigate } from "react-router-dom";
 
