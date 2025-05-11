@@ -1,8 +1,8 @@
-import { Header } from "../components/header"
-import { Steps } from "../components/steps"
+import { Header } from "../components/Header"
+import { Steps } from "../components/Steps"
 import { Content } from "../components/Content"
-import { Testimonial } from "../components/testimonial"
-import { Generate } from "../components/generate"
+import { Testimonial } from "../components/Testimonial"
+import { Generate } from "../components/Generate"
 export function Home(){
     return(
         <div>
