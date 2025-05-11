@@ -9,7 +9,7 @@ export const AppContextProvider = ({ children }) => {
   const [showLogin, SetShowLogin] = useState(false);
   const [token, SetToken] = useState(localStorage.getItem("token"));
   const [credit, setcredit] = useState(false);
-  const backendUrl = process.env.VITE_BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
   async function loadCreditsData() {
     try {
