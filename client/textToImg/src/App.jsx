@@ -4,11 +4,13 @@ import { Home } from './pages/Home';
 import { Result } from './pages/Result';
 import { BuyCredit } from './pages/BuyCredit';
 import { Nav } from './components/Navigation';
-import { Footer } from './components/footer';
-import { Login } from './components/login';
+
+
 import { useContext } from 'react';
 import { AppContext } from './context/state';
 import { ToastContainer } from 'react-toastify';
+import { Login } from './components/Login';
+import { Footer } from './components/Footer';
 
 
 function App(){
