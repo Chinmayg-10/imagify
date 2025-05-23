@@ -1,8 +1,8 @@
 import logo from './logo.svg'
 import logo_icon from './logo_icon.svg'
-import facebook_icon from './facebook_icon.svg'
+import linkedin_icon from './linkedin_icon.svg'
 import instagram_icon from './instagram_icon.svg'
-import twitter_icon from './twitter_icon.svg'
+import github_icon from './github_icon.svg'
 import star_icon from './star_icon.svg'
 import rating_star from './rating_star.svg'
 import sample_img_1 from './sample_img_1.png'
@@ -22,9 +22,9 @@ import profile_icon from './profile_icon.png'
 export const assets = {
     logo,
     logo_icon,
-    facebook_icon,
+    linkedin_icon,
     instagram_icon,
-    twitter_icon,
+    github_icon,
     star_icon,
     rating_star,
     sample_img_1,
@@ -83,19 +83,19 @@ export const plans = [
     {
       id: 'Basic',
       price: 10,
-      credits: 100,
+      credits: 20,
       desc: 'Best for personal use.'
     },
     {
       id: 'Advanced',
       price: 50,
-      credits: 750,
+      credits: 150,
       desc: 'Best for business use.'
     },
     {
       id: 'Business',
       price: 250,
-      credits: 5000,
+      credits: 600,
       desc: 'Best for enterprise use.'
     },
   ]

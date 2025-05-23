@@ -9,9 +9,16 @@ export function Footer() {
       </Link>
       <p className="flex-1 border-l border-gray-400 pl-4 text-gray-500 text-sm max-sm:hidden items-center">Copyright @imagify | All right reserved.</p>
       <div className="flex gap-2.5">
-        <img src={assets.facebook_icon} alt="" width={35} className="cursor-pointer"/>
-        <img src={assets.twitter_icon} alt="" width={35} className="cursor-pointer"/>
-        <img src={assets.instagram_icon} alt="" width={35} className="cursor-pointer"/>
+        <Link to="https://www.linkedin.com/in/chinmayg10/" target="_blank">
+        <img src={assets.linkedin_icon} alt="" width={35} className="cursor-pointer" />
+        </Link> 
+        <Link to="https://github.com/Chinmayg-10" target="_blank">
+          <img src={assets.github_icon} alt="" width={35} className="cursor-pointer"/>
+        </Link>
+        <Link to="https://www.instagram.com/chinmay_g10/" target="_blank">
+          <img src={assets.instagram_icon} alt="" width={35} className="cursor-pointer"/>
+        </Link>
+        
       </div>
     </div>
   );

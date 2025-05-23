@@ -21,31 +21,50 @@ export const AppContextProvider = ({ children }) => {
         setUser(data.user);
       }
     } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+      toast.error("Not Enough credits");
     }
   }
-  async function generateImage(prompt) {
-    try {
-      const { data } = await axios.post(
-        backendUrl + "/image/generate",
-        { prompt, userId: user._id },
-        { headers: { token } }
-      );
-      if (data.success) {
-        loadCreditsData();
-        return data.resultImage;
-      } else {
-        toast.error(data.message);
-        loadCreditsData();
-        if (data.creditBalance === 0) {
-          navigate("/buy");
-        }
+const blockedKeywords = [
+  "sex", "nude", "naked", "bed", "intimate", "erotic", "kiss", "romantic", "undress"
+];
+
+function containsBlockedWords(prompt) {
+  const lower = prompt.toLowerCase();
+  return blockedKeywords.some((word) => lower.includes(word));
+}
+
+async function generateImage(prompt) {
+  if (containsBlockedWords(prompt)) {
+    toast.error("That prompt may violate our content policy. Please rephrase.");
+    return;
+  }
+
+  try {
+    const { data } = await axios.post(
+      backendUrl + "/image/generate",
+      { prompt, userId: user._id },
+      { headers: { token } }
+    );
+
+    if (data.success) {
+      loadCreditsData();
+      return data.resultImage;
+    } else {
+      toast.error(data.message || "Image generation failed.");
+      loadCreditsData();
+      if (data.creditBalance === 0) {
+        navigate("/buy");
       }
-    } catch (error) {
-      toast.error(error.message);
+    }
+  } catch (error) {
+    if (error.response?.status === 422) {
+      toast.error("Prompt blocked for violating content policy. Please try something else.");
+    } else {
+      toast.error(error.response?.data?.message || "Something went wrong while generating the image.");
     }
   }
+}
+
   function logout() {
     localStorage.removeItem("token");
     SetToken("");
