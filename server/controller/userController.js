@@ -6,14 +6,13 @@ import { isGenerator } from "motion";
 const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
-    if (!name || !email || !password) {
-      return res.json({
+    const existingUser = await userModal.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
         success: false,
-        message: "Some data is missing",
+        message: "User already exists",
       });
     }
-
     const hashedPwd = await bcrypt.hash(password, 12);
     const userData = {
       name: name,
@@ -28,11 +27,10 @@ const registerUser = async (req, res) => {
     res.json({
       success: true,
       token,
-      user, // ✅ Add this
+      user, 
       message: "User signup done",
     });
   } catch (error) {
-    console.log(error);
     return res.json({
       success: false,
       message: error.message,
