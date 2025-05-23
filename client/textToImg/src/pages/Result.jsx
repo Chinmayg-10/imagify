@@ -32,7 +32,7 @@ export function Result() {
       viewport={{ once: true }}
     >
       <div className="relative">
-  <img src={image} alt="Generated" className="max-w-sm rounded" />
+  <img src={image} alt="Generated" className="max-w-sm rounded max-sm:w-80" />
 
   {isGenerating && (
     <div className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center rounded">

@@ -18,7 +18,7 @@ export function Testimonial() {
       <p className="text-center max-w-xl text-sm sm:text-xl text-gray-600 my-3 mb-10">
         What Our Users Are Saying
       </p>
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-6 flex-wrap">
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 flex-wrap">
         {testimonialsData.map((item, index) => (
           <div
             key={index}
